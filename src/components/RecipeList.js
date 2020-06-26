@@ -42,7 +42,7 @@ const RecipeList = (props) => {
             <input
                 className='searchbar'
                 type="text"
-                placeholder="search recepies"
+                placeholder="Search by: recipe title or category"
                 name="searchbar"
                 value={search}
                 onChange={handleChange}
