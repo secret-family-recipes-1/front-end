@@ -1,13 +1,14 @@
 .edit-backdrop{
     @extend .backdrop;
     position: absolute;
-    height: fit-content;
+    height: fit-content
 }
 
 .edit-modal{
     @extend .modal;
     max-width: 1200px;
     margin: 150px auto;
+    
 
     input{
         background-color: $white;
