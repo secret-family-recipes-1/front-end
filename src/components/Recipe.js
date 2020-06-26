@@ -41,9 +41,7 @@ export const Recipe = (props) => {
         setIsOpen(!isOpen)
     }
     
-    useEffect(()=>{
-        window.resizeTo(250,250)
-    },[isEditing])
+    
 
 
 
