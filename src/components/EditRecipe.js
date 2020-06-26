@@ -83,9 +83,9 @@ const EditRecipe = (props) => {
                                 <br /> <label className='recipe-form-label'>User: </label>
                                 <input
                                     className='recipe-form-input'
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
                                     name='user'
-                                    value={props.userInfo.username}
+                                    value={editedRecipe.user}
                                 // required
                                 />
                                 <br /> <label className='recipe-form-label'>ingredients: </label>
