@@ -2,28 +2,33 @@ import React, { useState } from 'react'
 //redux
 import {addRecipe} from "../actions/index"
 import {connect} from "react-redux"
+import { useHistory } from 'react-router-dom'
 
 import '../App.scss'
 
+import '../App.scss'
 
 const initialState = {
         title: '',
-        user:'',
+        user:'Randy', //will make dynamic with 
         ingredients: '',
         instructions: '',
         category: '',
-        user_id: '',
+        user_id: 1337, //will make user id dynamic by using .get req to fetch user id
 }
+
 const AddRecipeForm = ({addRecipe}) => {
     const [newRecipe, setNewRecipe] = useState(initialState)
 
     const handleChange = (event) => {
         setNewRecipe({...newRecipe, [event.target.name]: event.target.value})
     }
-
+    const history = useHistory()
     const handleSubmit = (event) => {
+        
         event.preventDefault()
         addRecipe(newRecipe)
+        history.push('/userdashboard')
     }
 
     return (
@@ -38,12 +43,12 @@ const AddRecipeForm = ({addRecipe}) => {
                 value={newRecipe.title}
                 required
             />
-            <br/> <label className='recipe-form-label'>Source: </label>
+            <br/> <label className='recipe-form-label'>User: </label>
             <input 
                 className='recipe-form-input'
                 onChange={handleChange}
-                name='source'
-                value={newRecipe.source}
+                name='user'
+                value={newRecipe.user}
                 required
             />
                 <br/> <label className='recipe-form-label'>ingredients: </label>
@@ -70,6 +75,8 @@ const AddRecipeForm = ({addRecipe}) => {
                 value={newRecipe.category}
                 required
             />
+            
+          
             <br/>
             <button className='form-btn'> Add Recipe </button>
         </form>

@@ -8,7 +8,7 @@ import UserDashboard from "./components/UserDashboard"
 import PrivateRoute from './components/PrivateRoute'
 import Navbar from './components/Navbar'
 import AddRecipeForm from './components/AddRecipeForm';
-import EditRecipe from './components/EditRecipe';
+// import EditRecipe from './components/EditRecipe';
 // import Loader from "react-loader-spinner"; // saving this for the login for isLoading animation
 
 // import Loader from "react-loader-spinner"; // saving this for the login for isLoading animation
