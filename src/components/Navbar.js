@@ -46,11 +46,11 @@ const Navbar = (props) => {
         <>
             <Modal showModal={showModal} setShowModal={setShowModal} title='You have been logged out' />
             <nav className='navbar'>
-                <h1> Secret Family Recipes </h1>
+             <a href ="https://boring-stonebraker-1206ae.netlify.app/index.html">   Secret Family Recipes  </a>
                 {isloggedin && <h2> Welcome back, {props.userInfo.username}</h2>}
                 {/* I'll try to use localStorage to store the value incase user causes component to rerender/refresh */}
                 <div className='navbar-links'>
-                    <Link to="/addrecipe"> Add a new recipe</Link>
+                    <Link className="navbarlink" to="/addrecipe"> Add a new recipe</Link>
                     <br />
                     <Link to="/userdashboard"> UserDashboard</Link>
                     <br />
