@@ -17,7 +17,7 @@ const UserDashboard = (props) => {
     return (
         <>
             <div className='dashboard'>
-                <h1>  UserDashboard </h1>
+                {/* <h1>  UserDashboard </h1> */}
                 <div className='recipe-list'> <RecipeList /></div>        
             </div>
         </>
