@@ -7,7 +7,10 @@ import {
     FAVORITE_RECIPE,
     AXIOS_ERROR,
     LOGIN_USER,
-    UPDATE_RECIPE
+    UPDATE_RECIPE,
+    GET_USER,
+    POSTNEW_USER
+    
 } from "../actions/index"
 
 //InitialState for global State
@@ -15,17 +18,25 @@ const initialState = {
     recipes: [],
     error: '',
     users: {},
+    userInfo: {},
     favRecipes: []
+
     
 }
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOGIN_USER: 
+        case POSTNEW_USER:
         return {
             ...state,
             users: action.payload
         }
+        case GET_USER:
+            return {
+                ...state,
+                userInfo: action.payload
+            }
         case ADD_RECIPE:
             return {
                 ...state,

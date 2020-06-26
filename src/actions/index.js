@@ -1,4 +1,5 @@
 import { axiosWithAuth } from "../utils/axiosWithAuth"
+// import { useParams } from "react-router-dom"
 // const history = useHistory()
 //using axiosWithAuth
 export const GET_USER = "GET_USER"
@@ -15,15 +16,17 @@ export const LOGIN_USER = "LOGIN_USER" //login
 export const GET_SPECIFIC_RECIPE = "GET_SPECIFIC_RECIPE"
 
 //***********Start of user actions ***********
-export const getUser = () => dispatch => {
+export const getUser = (id) => dispatch => {
     //not .get set up yet
-    axiosWithAuth().get('/:id')
+    
+    axiosWithAuth().get(`/api/users/${id}`)
         .then((res) => {
             console.log(res)
+            dispatch({ type: GET_USER, payload: res.data})
         })
         .catch((err) => {
-            console.log(err)
-            debugger
+            console.log(err.response)
+            // debugger
         })
 
 }
@@ -63,6 +66,7 @@ export const signupUser = (newUsername, history) => dispatch => {
             window.localStorage.setItem("userID", res.data.newUser.id)
             // setFormState(initialState)
             history.push("/userdashboard")
+            dispatch({ type: POSTNEW_USER, payload: res.data.user })
         })
         .catch((err) => {
             console.log(err.response)

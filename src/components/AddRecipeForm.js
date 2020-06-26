@@ -7,20 +7,23 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const initialState = {
         title: '',
-        user:'Randy', //will make dynamic with 
+        // user:'Randy', //will make dynamic with 
         ingredients: '',
         instructions: '',
         category: '',
-        user_id: 1337, //will make user id dynamic by using .get req to fetch user id
+        // user_id: 1337, //will make user id dynamic by using .get req to fetch user id
 }
+
+
+const AddRecipeForm = (props) => {
+    const [newRecipe, setNewRecipe] = useState(initialState)
 
 const backdrop = {
     visible: { opacity: 1 },
     hidden: { opacity: 0 }
 }
 
-const AddRecipeForm = ({addRecipe}) => {
-    const [newRecipe, setNewRecipe] = useState(initialState);
+
 
     const handleChange = (event) => {
         setNewRecipe({...newRecipe, [event.target.name]: event.target.value})
@@ -29,12 +32,13 @@ const AddRecipeForm = ({addRecipe}) => {
     const handleSubmit = (event) => {
         
         event.preventDefault()
-        addRecipe(newRecipe)
+        props.addRecipe({...newRecipe, user_id: props.userInfo.id, user: props.userInfo.username})
         history.push('/userdashboard')
     }
 
 
     return (
+
 
         <>
             <AnimatePresence exitBeforeEnter>
@@ -62,7 +66,7 @@ const AddRecipeForm = ({addRecipe}) => {
                             className='recipe-form-input'
                             onChange={handleChange}
                             name='user'
-                            value={newRecipe.user}
+                            value={props.userInfo.username}
                             required
                         />
                             <br/> <label className='recipe-form-label'>ingredients: </label>
@@ -98,7 +102,13 @@ const AddRecipeForm = ({addRecipe}) => {
                 </motion.div>
             </AnimatePresence>
         </>
+
     )
 }
+const MapStateToProps = state => {
+    return {
+        userInfo: state.userInfo
+    }
+}
 
-export default connect(null, {addRecipe})(AddRecipeForm)
+export default connect(MapStateToProps, {addRecipe})(AddRecipeForm)

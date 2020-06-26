@@ -6,7 +6,7 @@ import "../App.scss";
 //imported axios with auth - fb
 // import { axiosWithAuth } from "../utils/axiosWithAuth";
 // import Axios from "axios"; //set up axios for R1
-import { useLocalStorage } from "../utils/useLocalStorage"; // added local storage
+// import { useLocalStorage } from "../utils/useLocalStorage"; // added local storage
 //importing signup form schema
 import formSchema from './formSchema';
 import { connect } from "react-redux";
@@ -27,8 +27,8 @@ const initialState = {
 function SignupForm({signupUser}) {
 
   // const [formValues, setFormValues] = useState(initialState)
-  const [formState, setFormState] = useLocalStorage(`formValues`, initialState)
-  // const [formState, setFormState] = useState(initialState)
+  // const [formState, setFormState] = useLocalStorage(`formValues`, initialState) using .get request since API provides grab by id
+  const [formState, setFormState] = useState(initialState)
   const [errors, setErrors] = useState(initialState);
   const [buttonDisabled, setButtonDisabled] = useState(true)
   const [showModal, setShowModal] = useState(false);
@@ -43,10 +43,10 @@ function SignupForm({signupUser}) {
   // Form Handlers
   const history = useHistory()
 
-  const postNewUsername = (newUsername) => {
-    signupUser(newUsername,  history)
+  // const postNewUsername = (newUsername) => {
+  //   signupUser(newUsername,  history)
 
-  }
+  // }
 
   //onSubmit
  
@@ -57,7 +57,8 @@ function SignupForm({signupUser}) {
       email: formState.email.trim(),
       password: formState.password.trim(),
     }
-    postNewUsername(newUsername)
+    signupUser(newUsername, history)
+    // postNewUsername(newUsername)
     //pass in the function for axios call or useEffect
    
   }

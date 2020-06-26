@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 //setting up redux incase I have time to play with new things like dynamic username displaying on nav + misc
 import { connect } from 'react-redux'
-import { loginUser } from "../actions/index"
+import { getUser } from "../actions/index"
 
 import Modal from './Modal'
 import '../App.scss'
 
 
-const Navbar = ({ users }) => {
+const Navbar = (props) => {
     const [isloggedin, setIsLoggedin] = useState(false)
     const [showModal, setShowModal] = useState(false);
+
     useEffect(() => {
         if (localStorage.getItem("token")) {
             setIsLoggedin(true)
         }
-    }, [users])
+        props.getUser(localStorage.getItem("userID"))
+        console.log('useEffect success: component did mount in nav bar for getUser()')
+    }, [localStorage.getItem("token")])
+
+    console.log(props.userInfo)
 
 
     const logout = () => {
@@ -33,12 +38,16 @@ const Navbar = ({ users }) => {
 
     }
 
+//    useEffect(() => {
+      
+//    },[])
+
     return (
         <>
             <Modal showModal={showModal} setShowModal={setShowModal} title='You have been logged out' />
             <nav className='navbar'>
                 <h1> Secret Family Recipes </h1>
-                {isloggedin && <h2> Welcome back, {users.username}</h2>}
+                {isloggedin && <h2> Welcome back, {props.userInfo.username}</h2>}
                 {/* I'll try to use localStorage to store the value incase user causes component to rerender/refresh */}
                 <div className='navbar-links'>
                     <Link to="/addrecipe"> Add a new recipe</Link>
@@ -59,8 +68,9 @@ const Navbar = ({ users }) => {
 const mapStateToProps = state => {
     return {
         //setting up component to be ready to take in state
-        users: state.users
+        users: state.users,
+        userInfo: state.userInfo
     }
 }
 
-export default connect(mapStateToProps, { loginUser })(Navbar)
+export default connect(mapStateToProps, { getUser })(Navbar)
