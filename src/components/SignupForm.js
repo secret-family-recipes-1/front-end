@@ -117,7 +117,7 @@ function SignupForm({signupUser}) {
             onChange={changeHandler}
             value={formState.email} 
           ></input>
-          {/* {errors.username ? (<p className="error">{errors.username}</p>) : null} */}
+          {errors.email ? (<p className="error">{errors.email}</p>) : null}
         </label>
 
         <label className='form-label'>

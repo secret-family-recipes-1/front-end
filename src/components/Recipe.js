@@ -40,6 +40,8 @@ export const Recipe = (props) => {
         setRecipeOptions(!recipeOptions);
         setIsOpen(!isOpen)
     }
+    
+    
 
 
 
