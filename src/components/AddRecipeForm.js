@@ -79,6 +79,7 @@ const AddRecipeForm = (props) => {
           
             <br/>
             <button className='form-btn'> Add Recipe </button>
+            <button>close this window</button>
         </form>
     )
 }
