@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from 'react-router-dom'
-import { motion } from 'framer-motion'
+// import { motion } from 'framer-motion'  - not being used from what I see
 import * as Yup from "yup";
 import "../App.scss";
 //imported axios with auth - fb
