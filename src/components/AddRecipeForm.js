@@ -97,6 +97,7 @@ const backdrop = {
                     
                         <br/>
                         <button className='form-btn'> Add Recipe </button>
+                        <button className ='form-btn'onClick={()=> history.push('/userdashboard')}> Close window</button>
                     </form>
                  </div>
                 </motion.div>
