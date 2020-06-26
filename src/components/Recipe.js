@@ -40,6 +40,10 @@ export const Recipe = (props) => {
         setRecipeOptions(!recipeOptions);
         setIsOpen(!isOpen)
     }
+    
+    useEffect(()=>{
+        window.resizeTo(250,250)
+    },[isEditing])
 
 
 
